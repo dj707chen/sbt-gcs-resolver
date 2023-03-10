@@ -50,7 +50,7 @@ lazy val sbtGcsArtifactRepositoryPlaygroundToPublish = project
     crossScalaVersions := Nil,
     gcsPublishFilePolicy := GcsPublishFilePolicy.InheritedFromBucket,
     publishTo := Some(
-      "Custom Releases" at "artifactregistry://europe-north1-maven.pkg.dev/latestbit/latestbit-artifacts-snapshots"
+      "Custom Releases" at "artifactregistry://us-central1-maven.pkg.dev/gkelab-379719/antswai-java"
     ),
     logLevel := Level.Debug
   )
@@ -60,9 +60,12 @@ lazy val sbtGcsArtifactRepositoryPlaygroundToResolve = project
   .settings(
     name := "sbt-gcs-plugin-playground-artifact-resolve",
     crossScalaVersions := Nil,
-    resolvers += "Custom Releases" at "artifactregistry://europe-north1-maven.pkg.dev/latestbit/latestbit-artifacts-snapshots",
-    libraryDependencies ++= Seq(
-      "org.latestbit" %% "sbt-gcs-plugin-playground-artifact-publish" % "0.0.10-SNAPSHOT"
+    resolvers += "Custom Releases" at "artifactregistry://us-central1-maven.pkg.dev/gkelab-379719/antswai-java",
+    resolvers += "Maven Central mirror" at "https://maven-central.storage-download.googleapis.com/repos/central/data/",
+      libraryDependencies ++= Seq(
+      "org.latestbit"  %% "sbt-gcs-plugin-playground-artifact-publish" % "0.0.10-SNAPSHOT",
+      "javax.xml.bind"  % "jaxb-api"                                   % "2.3.1" % Compile,
+      "junit"           % "junit"                                      % "9.13.2"
     ),
     logLevel := Level.Debug
   )
